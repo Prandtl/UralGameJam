@@ -8,13 +8,15 @@ public class FirstPersonController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
+		CursorStateManager.HideCursor ();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		MoveOnWasd();
 		LookWithMouse();
+		ReleaseOnEsc ();
+		GetBackInOnClick ();
 	}
 
     void MoveOnWasd ()
@@ -47,5 +49,19 @@ public class FirstPersonController : MonoBehaviour {
 	private float pitch = 0.0f;
 	private float maxPitch = 90.0f;
 	private float minPitch = -90.0f;
+
+	void ReleaseOnEsc ()
+	{
+		if (CursorStateManager.IsLocked () && Input.GetKeyDown (KeyCode.Escape)) {
+			CursorStateManager.ShowCursor ();
+		}
+	}
+
+	void GetBackInOnClick ()
+	{
+		if (!CursorStateManager.IsLocked () && Input.GetMouseButtonDown (0)) {
+			CursorStateManager.HideCursor ();
+		}
+	}
 
 }

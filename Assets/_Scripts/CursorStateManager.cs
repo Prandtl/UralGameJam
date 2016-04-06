@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class CursorHider{
+public static class CursorStateManager{
 	static bool locked = false;
 
 	public static void HideCursor()

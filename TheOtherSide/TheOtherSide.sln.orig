@@ -1,4 +1,4 @@
-﻿Microsoft Visual Studio Solution File, Format Version 11.00
+Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
 Project("{8AF3178B-7F14-0C0A-5A5C-70979CF950A2}") = "TheOtherSide", "Assembly-CSharp.csproj", "{0493FA44-9CC8-6CCB-8B81-DEBD7B16B075}"

@@ -31,18 +31,29 @@ public class PrandtlyPlayerController : MonoBehaviour
 			dVelocity.z = NormalizeVelocityChange (dVelocity.z);
 
 			rb.AddForce (dVelocity, ForceMode.VelocityChange);
+			if (canJump && Input.GetButton ("Jump")) {
+				rb.velocity = new Vector3 (velocity.x, CalculateJumpVerticalSpeed (), velocity.z);
+			}
 		}
 
 		rb.AddForce (new Vector3 (0, -gravity * rb.mass, 0));
 		grounded = false;
 	}
 
-	void OnCollisionStay ()
+	void OnCollisionStay (Collision collisionInfo)
 	{
-		grounded = true;
+		if (!grounded) {
+			foreach (var c in collisionInfo.contacts) {
+				if (grounded)
+					break;
+				if (Vector3.Dot (c.normal, Vector3.up) > 0.5) {
+					grounded = true;
+				}
+			}
+		}
 	}
 
-	float CaluculateJumpVerticalSpeed ()
+	float CalculateJumpVerticalSpeed ()
 	{
 		return Mathf.Sqrt (2 * jumpHeight * gravity);
 	}

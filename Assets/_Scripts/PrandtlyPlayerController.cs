@@ -10,11 +10,26 @@ public class PrandtlyPlayerController : MonoBehaviour
 	public bool canJump = true;
 	public float jumpHeight = 2.0f;
 
+	public float speedH = 2.0f;
+	public float speedV = 2.0f;
+
+	void Start ()
+	{
+		CursorStateManager.HideCursor ();
+	}
+
 	void Awake ()
 	{
 		rb = GetComponent<Rigidbody> ();
 		rb.useGravity = false;
 		rb.freezeRotation = true;
+	}
+
+	void Update ()
+	{
+		LookWithMouse ();
+		ReleaseOnEsc ();
+		GetBackInOnClick ();
 	}
 
 	void FixedUpdate ()
@@ -65,4 +80,39 @@ public class PrandtlyPlayerController : MonoBehaviour
 
 	private bool grounded = false;
 	private Rigidbody rb;
+
+
+	void LookWithMouse ()
+	{
+		yaw += speedH * Input.GetAxis ("Mouse X");
+		pitch -= speedV * Input.GetAxis ("Mouse Y");
+		if (pitch > maxPitch)
+			pitch = maxPitch;
+		if (pitch < minPitch)
+			pitch = minPitch;
+		// turn character (z axis only)
+		transform.eulerAngles = new Vector3 (0.0f, yaw, 0.0f);
+		// turn mainCamera
+		Camera.main.transform.eulerAngles = new Vector3 (pitch, yaw, 0.0f);
+	}
+
+	private float yaw = 0.0f;
+	private float pitch = 0.0f;
+	private float maxPitch = 90.0f;
+	private float minPitch = -90.0f;
+
+
+	void ReleaseOnEsc ()
+	{
+		if (CursorStateManager.IsLocked () && Input.GetKeyDown (KeyCode.Escape)) {
+			CursorStateManager.ShowCursor ();
+		}
+	}
+
+	void GetBackInOnClick ()
+	{
+		if (!CursorStateManager.IsLocked () && Input.GetMouseButtonDown (0)) {
+			CursorStateManager.HideCursor ();
+		}
+	}
 }

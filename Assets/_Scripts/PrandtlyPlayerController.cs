@@ -4,7 +4,8 @@ using System.Collections;
 [RequireComponent (typeof(Rigidbody))]
 public class PrandtlyPlayerController : MonoBehaviour
 {
-	public float speed = 10.0f;
+	public float speed = 5.5f;
+	public float walkSpeed = 2.0f;
 	public float gravity = 10.0f;
 	public float maxVelocityChange = 10.0f;
 	public bool canJump = true;
@@ -23,10 +24,12 @@ public class PrandtlyPlayerController : MonoBehaviour
 		rb = GetComponent<Rigidbody> ();
 		rb.useGravity = false;
 		rb.freezeRotation = true;
+		currentSpeed = speed;
 	}
 
 	void Update ()
 	{
+		CheckRunning ();
 		LookWithMouse ();
 		ReleaseOnEsc ();
 		GetBackInOnClick ();
@@ -37,7 +40,7 @@ public class PrandtlyPlayerController : MonoBehaviour
 		if (grounded) {
 			var targetVelocity = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
 			targetVelocity = transform.TransformDirection (targetVelocity);
-			targetVelocity *= speed;
+			targetVelocity *= currentSpeed;
 
 			var velocity = rb.velocity;
 			var dVelocity = targetVelocity - velocity;
@@ -54,6 +57,8 @@ public class PrandtlyPlayerController : MonoBehaviour
 		rb.AddForce (new Vector3 (0, -gravity * rb.mass, 0));
 		grounded = false;
 	}
+
+	private float currentSpeed;
 
 	void OnCollisionStay (Collision collisionInfo)
 	{
@@ -114,5 +119,10 @@ public class PrandtlyPlayerController : MonoBehaviour
 		if (!CursorStateManager.IsLocked () && Input.GetMouseButtonDown (0)) {
 			CursorStateManager.HideCursor ();
 		}
+	}
+
+	void CheckRunning ()
+	{
+		currentSpeed = Input.GetKey (KeyCode.LeftShift) ? walkSpeed : speed;
 	}
 }

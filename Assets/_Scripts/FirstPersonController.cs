@@ -63,5 +63,4 @@ public class FirstPersonController : MonoBehaviour {
 			CursorStateManager.HideCursor ();
 		}
 	}
-
 }

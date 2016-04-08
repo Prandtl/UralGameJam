@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using AssemblyCSharp;
 
 [RequireComponent (typeof(Rigidbody))]
 public class PrandtlyPlayerController : MonoBehaviour
@@ -14,9 +15,13 @@ public class PrandtlyPlayerController : MonoBehaviour
 	public float speedH = 2.0f;
 	public float speedV = 2.0f;
 
+	public float objectUseDistance = 2.0f;
+
 	void Start ()
 	{
 		CursorStateManager.HideCursor ();
+		cam = Camera.main;
+
 	}
 
 	void Awake ()
@@ -33,6 +38,7 @@ public class PrandtlyPlayerController : MonoBehaviour
 		LookWithMouse ();
 		ReleaseOnEsc ();
 		GetBackInOnClick ();
+		UseIfPossible ();
 	}
 
 	void FixedUpdate ()
@@ -98,7 +104,7 @@ public class PrandtlyPlayerController : MonoBehaviour
 		// turn character (z axis only)
 		transform.eulerAngles = new Vector3 (0.0f, yaw, 0.0f);
 		// turn mainCamera
-		Camera.main.transform.eulerAngles = new Vector3 (pitch, yaw, 0.0f);
+		cam.transform.eulerAngles = new Vector3 (pitch, yaw, 0.0f);
 	}
 
 	private float yaw = 0.0f;
@@ -106,6 +112,7 @@ public class PrandtlyPlayerController : MonoBehaviour
 	private float maxPitch = 90.0f;
 	private float minPitch = -90.0f;
 
+	private Camera cam;
 
 	void ReleaseOnEsc ()
 	{
@@ -124,5 +131,29 @@ public class PrandtlyPlayerController : MonoBehaviour
 	void CheckRunning ()
 	{
 		currentSpeed = Input.GetKey (KeyCode.LeftShift) ? walkSpeed : speed;
+	}
+
+	IUsable CheckUsableObjects ()
+	{
+		RaycastHit hit;
+		var ray = Camera.main.ScreenPointToRay (new Vector3 (cam.pixelWidth / 2, cam.pixelHeight / 2, 0));
+		if (Physics.Raycast (ray, out hit, objectUseDistance)) {
+			var obj = hit.collider.gameObject;
+			if (obj.tag == "Usable") {
+				IUsable usable = (IUsable)obj.GetComponent (typeof(IUsable));
+				return usable;
+			}
+		}
+		return null;
+	}
+
+	void UseIfPossible ()
+	{
+		if (Input.GetKeyDown (KeyCode.E)) {
+			var obj = CheckUsableObjects ();
+			if (obj == null)
+				return;
+			obj.Use ();
+		}
 	}
 }

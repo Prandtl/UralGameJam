@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using AssemblyCSharp;
 
-public class WardrobeController : MonoBehaviour {
+public class WardrobeController : MonoBehaviour, IUsable {
 
 	public float openingSpeed;
 	public float closingSpeed;
@@ -66,5 +67,10 @@ public class WardrobeController : MonoBehaviour {
 				doorsOpened = false;
 			}
 		}
+	}
+
+	public void Use()
+	{
+		SwitchDoors ();
 	}
 }

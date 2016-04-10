@@ -27,9 +27,11 @@ public class WardrobeController : MonoBehaviour, IUsable {
 	// Update is called once per frame
 	void Update () {
 		ControlDoors ();
+		/*
 		if (Input.GetKeyDown(KeyCode.C)) {
 			SwitchDoors ();
 		};
+		*/
 	}
 
 	void SwitchDoors ()

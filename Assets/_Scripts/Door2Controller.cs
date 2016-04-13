@@ -22,7 +22,7 @@ public class Door2Controller : MonoBehaviour, IUsable {
 		rightDoorOpened = false;
 
 		boltOpeningLimit = 89.0f;
-		boltClosingLimit = 6.26f;
+		boltClosingLimit = 7.0f;
 		bolt = transform.Find("BoltWrapper");
 		boltOpened = false;
 	}

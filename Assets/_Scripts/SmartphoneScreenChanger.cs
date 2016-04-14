@@ -8,7 +8,6 @@ public class SmartphoneScreenChanger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log (gameObject);
 		index = 0;
 		colors = new Color[]{ Color.magenta, Color.cyan, Color.yellow, Color.white};
 		mat = GetComponent<Renderer> ().material;

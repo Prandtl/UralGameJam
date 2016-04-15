@@ -51,7 +51,6 @@ public class WardrobeController : MonoBehaviour, IUsable {
 
 	void OpenDoors () {
 		if (!doorsOpened) {
-			Debug.Log (leftDoor.localEulerAngles.y);
 			if (leftDoor.localEulerAngles.y < maxOpeningLimit) {
 				leftDoor.transform.Rotate (Vector3.up * (openingSpeed * Time.deltaTime));
 				rightDoor.transform.Rotate (-Vector3.up * (openingSpeed * Time.deltaTime));

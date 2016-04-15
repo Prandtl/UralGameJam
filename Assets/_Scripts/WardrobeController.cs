@@ -18,9 +18,7 @@ public class WardrobeController : MonoBehaviour, IUsable {
 		doorsOpened = false;
 		doorsSwitch = false;
 		leftDoor = transform.Find ("LeftDoorContainer");
-		leftDoor.eulerAngles.Set (0, 0, 0);
 		rightDoor = transform.Find ("RightDoorContainer");
-		rightDoor.eulerAngles.Set (0, 0, 0);
 	}
 
 	private Transform leftDoor;
@@ -53,8 +51,8 @@ public class WardrobeController : MonoBehaviour, IUsable {
 
 	void OpenDoors () {
 		if (!doorsOpened) {
-			Debug.Log (leftDoor.eulerAngles.y);
-			if (leftDoor.eulerAngles.y < maxOpeningLimit) {
+			Debug.Log (leftDoor.localEulerAngles.y);
+			if (leftDoor.localEulerAngles.y < maxOpeningLimit) {
 				leftDoor.transform.Rotate (Vector3.up * (openingSpeed * Time.deltaTime));
 				rightDoor.transform.Rotate (-Vector3.up * (openingSpeed * Time.deltaTime));
 			} else {
@@ -65,7 +63,7 @@ public class WardrobeController : MonoBehaviour, IUsable {
 
 	void CloseDoors () {
 		if (doorsOpened) {
-			if (leftDoor.eulerAngles.y > 3.0f && leftDoor.eulerAngles.y < 270.0f) {
+			if (leftDoor.localEulerAngles.y > 3.0f && leftDoor.localEulerAngles.y < 270.0f) {
 				leftDoor.transform.Rotate (-Vector3.up * (openingSpeed * Time.deltaTime));
 				rightDoor.transform.Rotate (Vector3.up * (openingSpeed * Time.deltaTime));
 			} else {

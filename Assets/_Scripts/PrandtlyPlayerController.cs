@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AssemblyCSharp;
+using UnityEngine.UI;
 
 [RequireComponent (typeof(Rigidbody))]
 public class PrandtlyPlayerController : MonoBehaviour
@@ -16,6 +17,7 @@ public class PrandtlyPlayerController : MonoBehaviour
 	public float speedV = 2.0f;
 
 	public float objectUseDistance = 2.0f;
+	public Image handImage;
 
 	void Start ()
 	{
@@ -34,10 +36,12 @@ public class PrandtlyPlayerController : MonoBehaviour
 
 	void Update ()
 	{
+		handImage.enabled = false;
 		CheckRunning ();
 		LookWithMouse ();
 		ReleaseOnEsc ();
 		GetBackInOnClick ();
+		DrawHandIfUsable ();
 		UseIfPossible ();
 	}
 
@@ -155,5 +159,12 @@ public class PrandtlyPlayerController : MonoBehaviour
 				return;
 			obj.Use ();
 		}
+	}
+
+	void DrawHandIfUsable(){
+		var obj = CheckUsableObjects ();
+		if (obj == null)
+			return;
+		handImage.enabled = true;
 	}
 }

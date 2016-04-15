@@ -4,6 +4,11 @@ using System.Collections;
 [ExecuteInEditMode]
 public class WallTextureResize : MonoBehaviour {
 
+
+	public float x = 18;
+	public float y = 4;
+	public float z = 1;
+
 	private Vector3 _currentScale;
 
 	private void Start()
@@ -53,9 +58,9 @@ public class WallTextureResize : MonoBehaviour {
 
 	private Vector2[] SetupUvMap(Vector2[] meshUVs)
 	{
-		var width = _currentScale.x/18;
-		var depth = _currentScale.z;
-		var height = _currentScale.y/4;
+		var width = _currentScale.x/x;
+		var depth = _currentScale.z/z;
+		var height = _currentScale.y/y;
 
 		//Front
 		meshUVs[2] = new Vector2(0, height);

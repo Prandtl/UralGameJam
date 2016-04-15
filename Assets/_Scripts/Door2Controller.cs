@@ -67,14 +67,14 @@ public class Door2Controller : MonoBehaviour, IUsable {
 	}
 
 	void OpenRightDoor () {
-		if (!rightDoorOpened && (rightDoor.eulerAngles.y > 360 - maxOpeningLimit || rightDoor.eulerAngles.y < 90))
+		if (!rightDoorOpened && (rightDoor.localEulerAngles.y > 360 - maxOpeningLimit || rightDoor.localEulerAngles.y < 90))
 			rightDoor.Rotate (Vector3.down * openingSpeed);
 		else
 			rightDoorOpened = true;
 	}
 
 	void CloseRightDoor () {
-		if (rightDoorOpened && (rightDoor.eulerAngles.y > 180))
+		if (rightDoorOpened && (rightDoor.localEulerAngles.y > 180))
 			rightDoor.Rotate (Vector3.up * openingSpeed);
 		else
 			rightDoorOpened = false;
@@ -84,14 +84,14 @@ public class Door2Controller : MonoBehaviour, IUsable {
 	private bool rightDoorOpened;
 
 	void OpenLeftDoor () {
-		if (!leftDoorOpened && (leftDoor.eulerAngles.y < maxOpeningLimit || leftDoor.eulerAngles.y > 270))
+		if (!leftDoorOpened && (leftDoor.localEulerAngles.y < maxOpeningLimit || leftDoor.localEulerAngles.y > 270))
 			leftDoor.Rotate (Vector3.up * openingSpeed);
 		else
 			leftDoorOpened = true;
 	}
 
 	void CloseLeftDoor () {
-		if (leftDoorOpened && (leftDoor.eulerAngles.y < 180))
+		if (leftDoorOpened && (leftDoor.localEulerAngles.y < 180))
 			leftDoor.Rotate (Vector3.down * openingSpeed);
 		else
 			leftDoorOpened = false;
@@ -101,14 +101,14 @@ public class Door2Controller : MonoBehaviour, IUsable {
 	private bool leftDoorOpened;
 
 	void OpenBolt () {
-		if (!boltOpened && bolt.eulerAngles.x < boltOpeningLimit && bolt.eulerAngles.y == 0)  // kostyl
+		if (!boltOpened && bolt.localEulerAngles.x < boltOpeningLimit && bolt.localEulerAngles.y == 0)  // kostyl
 			bolt.Rotate (Vector3.right * openingSpeed);
 		else
 			boltOpened = true;
 	}
 
 	void CloseBolt () {
-		if (boltOpened && bolt.eulerAngles.x > boltClosingLimit)
+		if (boltOpened && bolt.localEulerAngles.x > boltClosingLimit)
 			bolt.Rotate (Vector3.left * openingSpeed);
 		else
 			boltOpened = false;

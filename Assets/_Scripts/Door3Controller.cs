@@ -49,12 +49,22 @@ public class Door3Controller : MonoBehaviour, IUsable {
 			door.Translate (Vector3.left * openingSpeed * Time.deltaTime);
 		else if (!doorSideShifted && (door.localPosition.z > initialPosition.z - maxSideShift)) {
 			door.Translate (Vector3.back * openingSpeed * Time.deltaTime);
-		} else
+		} else {
+			doorSideShifted = true;
 			doorOpened = true;
+		}
 	}
 
 	void Close () {
-
+		if (doorSideShifted && (door.localPosition.z < initialPosition.z))
+			door.Translate (Vector3.forward * openingSpeed * Time.deltaTime);
+		else {
+			doorSideShifted = false;
+			if (!doorOpened && (door.localPosition.x < initialPosition.x))
+				door.Translate (Vector3.right * openingSpeed * Time.deltaTime);
+			else
+				doorOpened = false;
+		}
 	}
 
 	private bool doorOpened;

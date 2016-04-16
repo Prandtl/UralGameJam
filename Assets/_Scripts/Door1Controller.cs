@@ -64,14 +64,14 @@ public class Door1Controller : MonoBehaviour, IUsable {
 
 	void OpenRightDoor () {
 		if (!rightDoorOpened && rightDoor.position.z > rightDoorOpeningLimit)
-			rightDoor.Translate (Vector3.back * openingSpeed);
+			rightDoor.Translate (Vector3.back * openingSpeed * Time.deltaTime);
 		else
 			rightDoorOpened = true;
 	}
 
 	void CloseRightDoor () {
 		if (rightDoorOpened && rightDoor.position.z < initialPositionZ)
-			rightDoor.Translate (Vector3.forward * openingSpeed);
+			rightDoor.Translate (Vector3.forward * openingSpeed * Time.deltaTime);
 		else
 			rightDoorOpened = false;
 	}
@@ -82,14 +82,14 @@ public class Door1Controller : MonoBehaviour, IUsable {
 
 	void OpenLeftDoor () {
 		if (!leftDoorOpened && leftDoor.position.z < leftDoorOpeningLimit)
-			leftDoor.Translate (Vector3.forward * openingSpeed);
+			leftDoor.Translate (Vector3.forward * openingSpeed * Time.deltaTime);
 		else
 			leftDoorOpened = true;
 	}
 
 	void CloseLeftDoor () {
 		if (leftDoorOpened && leftDoor.position.z > initialPositionZ)
-			leftDoor.Translate (Vector3.back * openingSpeed);
+			leftDoor.Translate (Vector3.back * openingSpeed * Time.deltaTime);
 		else
 			leftDoorOpened = false;
 	}

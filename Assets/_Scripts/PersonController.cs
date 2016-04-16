@@ -15,7 +15,7 @@ public class PersonController : MonoBehaviour {
 	void Update () {
 		float 
 		step = speed * Time.deltaTime;
-		Debug.Log (Vector3.MoveTowards (transform.position, initialPosition, step));
+//		Debug.Log (Vector3.MoveTowards (transform.position, initialPosition, step));
 		transform.position = Vector3.MoveTowards(transform.position, initialPosition, step);
 	}
 

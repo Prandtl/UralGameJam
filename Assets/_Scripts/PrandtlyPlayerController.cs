@@ -76,7 +76,7 @@ public class PrandtlyPlayerController : MonoBehaviour
 			foreach (var c in collisionInfo.contacts) {
 				if (grounded)
 					break;
-				if (Vector3.Dot (c.normal, Vector3.up) > 0.5) {
+				if (Vector3.Dot (c.normal, Vector3.up) > 0.1) {
 					grounded = true;
 				}
 			}

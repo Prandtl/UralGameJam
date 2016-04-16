@@ -38,7 +38,7 @@ public class Door2Controller : MonoBehaviour, IUsable {
 		SwitchDoor ();
 	}
 
-	void SwitchDoor ()
+	public void SwitchDoor ()
 	{
 		doorsSwitch = !doorsSwitch;
 	}

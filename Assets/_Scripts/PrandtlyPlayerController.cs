@@ -10,6 +10,7 @@ public class PrandtlyPlayerController : MonoBehaviour
 	public bool canMove = true;
 	public bool canWatch = true;
 
+
 	public float speed = 5.5f;
 	public float walkSpeed = 2.0f;
 	public float gravity = 10.0f;

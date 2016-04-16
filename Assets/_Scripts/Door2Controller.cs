@@ -15,7 +15,7 @@ public class Door2Controller : MonoBehaviour, IUsable {
 		rightDoor = transform.Find ("RightDoorWrapper");
 
 		maxOpeningLimit = 91.0f;
-		openingSpeed = 2.5f;
+		openingSpeed = 150.0f;
 
 		doorsSwitch = false;
 		leftDoorOpened = false;

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 [RequireComponent (typeof(Rigidbody))]
 public class PrandtlyPlayerController : MonoBehaviour
 {
+
+	public bool canMove = true;
+	public bool canWatch = true;
+
 	public float speed = 5.5f;
 	public float walkSpeed = 2.0f;
 	public float gravity = 10.0f;
@@ -18,6 +22,14 @@ public class PrandtlyPlayerController : MonoBehaviour
 
 	public float objectUseDistance = 2.0f;
 	public Image handImage;
+
+	public void SetWatchState(bool state){
+		canWatch = state;
+	}
+
+	public void SetMoveState(bool state){
+		canMove = state;
+	}
 
 	void Start ()
 	{
@@ -47,6 +59,9 @@ public class PrandtlyPlayerController : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+		if (!canMove)
+			return;
+		
 		if (grounded) {
 			var targetVelocity = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
 			targetVelocity = transform.TransformDirection (targetVelocity);
@@ -99,6 +114,8 @@ public class PrandtlyPlayerController : MonoBehaviour
 
 	void LookWithMouse ()
 	{
+		if (!canWatch)
+			return;
 		yaw += speedH * Input.GetAxis ("Mouse X");
 		pitch -= speedV * Input.GetAxis ("Mouse Y");
 		if (pitch > maxPitch)

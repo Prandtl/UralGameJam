@@ -19,7 +19,7 @@ public class HandJobController : MonoBehaviour {
 	}
 
 	void ControlHand() {
-		if (!handSwitch)
+		if (handSwitch)
 			HandDown ();
 		else
 			HandUp ();
@@ -31,7 +31,8 @@ public class HandJobController : MonoBehaviour {
 	}
 
 	void HandDown () {
-		if (hand.localEulerAngles.x > 360-90 && hand.localEulerAngles.y < 90)	//	Koctyl
+		Debug.Log (hand.localEulerAngles.x);
+		if ((hand.localEulerAngles.x > 360-90 || hand.localEulerAngles.x < 90)  && hand.localEulerAngles.y < 90)	//	Koctyl
 			hand.Rotate (Vector3.left);
 	}
 

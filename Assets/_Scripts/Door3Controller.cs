@@ -8,6 +8,7 @@ public class Door3Controller : MonoBehaviour, IUsable {
 	public float openingSpeed;
 	public float maxTowardsShift;				// Выдвижение двери на себя
 	public float maxSideShift;					// сдвиг вбок
+	public float usageDelay;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,8 @@ public class Door3Controller : MonoBehaviour, IUsable {
 		initialPosition = door.transform.localPosition;
 		doorOpened = false;
 		doorSideShifted = false;
+		nextUsage = Time.time;
+		usageDelay = 1.5f;
 	}
 
 	private Vector3 initialPosition;
@@ -30,8 +33,13 @@ public class Door3Controller : MonoBehaviour, IUsable {
 	}
 
 	public void Use () {
-		SwitchDoor ();
+		if (Time.time > nextUsage) {
+			SwitchDoor ();
+			nextUsage = Time.time + usageDelay;
+		}
 	}
+
+	private float nextUsage;
 
 	public void SwitchDoor () {
 		doorSwitch = !doorSwitch;

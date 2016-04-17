@@ -7,6 +7,7 @@ public class Door2Controller : MonoBehaviour, IUsable {
 	public float maxOpeningLimit;
 	public float openingSpeed;
 	public bool doorsSwitch;
+	public float usageDelay;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +26,9 @@ public class Door2Controller : MonoBehaviour, IUsable {
 		boltClosingLimit = 7.0f;
 		bolt = transform.Find("BoltWrapper");
 		boltOpened = false;
+
+		nextUsage = Time.time;
+		usageDelay = 1.5f;
 	}
 
 	private float initialPositionZ;
@@ -35,8 +39,13 @@ public class Door2Controller : MonoBehaviour, IUsable {
 	}
 
 	public void Use () {
-		SwitchDoor ();
+		if (Time.time > nextUsage) {
+			SwitchDoor ();
+			nextUsage = Time.time + usageDelay;
+		}
 	}
+
+	private float nextUsage;
 
 	public void SwitchDoor ()
 	{

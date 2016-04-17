@@ -9,6 +9,7 @@ public class WardrobeController : MonoBehaviour, IUsable {
 	public float maxOpeningLimit;
 	public bool doorsOpened;
 	public bool doorsSwitch;
+	public float usageDelay;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,8 @@ public class WardrobeController : MonoBehaviour, IUsable {
 		doorsSwitch = false;
 		leftDoor = transform.Find ("LeftDoorContainer");
 		rightDoor = transform.Find ("RightDoorContainer");
+		nextUsage = Time.time;
+		usageDelay = 2.5f;
 	}
 
 	private Transform leftDoor;
@@ -71,8 +74,12 @@ public class WardrobeController : MonoBehaviour, IUsable {
 		}
 	}
 
-	public void Use()
-	{
-		SwitchDoors ();
+	public void Use () {
+		if (Time.time > nextUsage) {
+			SwitchDoors ();
+			nextUsage = Time.time + usageDelay;
+		}
 	}
+
+	private float nextUsage;
 }

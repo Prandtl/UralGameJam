@@ -17,6 +17,7 @@ public class WaypointWalker : MonoBehaviour {
 		float step = speed * Time.deltaTime;
 		//		Debug.Log (Vector3.MoveTowards (transform.position, initialPosition, step));
 		transform.position = Vector3.MoveTowards(transform.position, wp.transform.position, step);
+		transform.LookAt (wp.transform);
 	
 	}
 }

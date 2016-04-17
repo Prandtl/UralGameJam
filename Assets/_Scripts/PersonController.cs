@@ -12,9 +12,8 @@ public class PersonController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		float 
-		step = speed * Time.deltaTime;
+	void FixedUpdate () {
+		float step = speed * Time.deltaTime;
 //		Debug.Log (Vector3.MoveTowards (transform.position, initialPosition, step));
 		transform.position = Vector3.MoveTowards(transform.position, initialPosition, step);
 	}

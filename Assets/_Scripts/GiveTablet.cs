@@ -5,7 +5,6 @@ public class GiveTablet : MonoBehaviour {
 
 	void OnTriggerEnter()
 	{
-		var go = FindObjectOfType<TabletScript> ().gameObject;
 		FindObjectOfType<Inventory> ().AddTablet ();
 	}
 

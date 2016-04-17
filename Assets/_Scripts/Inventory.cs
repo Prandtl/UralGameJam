@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour {
 	GameObject myTablet;
 	public Image snickersImg;
 
-	bool gotTablet;
+	public bool gotTablet;
 
 	// Use this for initialization
 	void Start () {

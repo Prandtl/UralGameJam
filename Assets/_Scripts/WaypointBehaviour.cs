@@ -9,4 +9,12 @@ public class WaypointBehaviour : MonoBehaviour {
 	{
 		return next;
 	}
+
+	void OnTriggerEnter(Collider other){
+		var walker = other.GetComponent<WaypointWalker>();
+		if (walker == null)
+			return;
+		Debug.Log ("Changing position");
+		walker.wp = next;
+	}
 }

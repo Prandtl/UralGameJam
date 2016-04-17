@@ -14,7 +14,6 @@ public class WaypointBehaviour : MonoBehaviour {
 		var walker = other.GetComponent<WaypointWalker>();
 		if (walker == null)
 			return;
-		Debug.Log ("Changing position");
 		walker.wp = next;
 	}
 }

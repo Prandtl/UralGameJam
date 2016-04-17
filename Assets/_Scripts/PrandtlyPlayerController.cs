@@ -52,7 +52,7 @@ public class PrandtlyPlayerController : MonoBehaviour
 		handImage.enabled = false;
 		CheckRunning ();
 		LookWithMouse ();
-		ReleaseOnEsc ();
+		//ReleaseOnEsc ();
 		GetBackInOnClick ();
 		DrawHandIfUsable ();
 		UseIfPossible ();

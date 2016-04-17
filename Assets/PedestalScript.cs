@@ -10,12 +10,11 @@ public class PedestalScript : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other){
-		Debug.Log ("FUCK");
 		if (!visited) {
-			Debug.Log ("SHEIT");
 			medal.GetComponent<Renderer> ().enabled = false;
 			PedestalLight.enabled = false;
 			visited = true;
+			FindObjectOfType<RoboScript> ().GiveMedal ();
 		}
 	}
 

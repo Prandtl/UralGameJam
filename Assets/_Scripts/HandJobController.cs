@@ -19,7 +19,7 @@ public class HandJobController : MonoBehaviour {
 	}
 
 	void ControlHand() {
-		if (handSwitch)
+		if (!handSwitch)
 			HandDown ();
 		else
 			HandUp ();

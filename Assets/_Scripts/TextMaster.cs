@@ -7,9 +7,17 @@ using AssemblyCSharp;
 public class TextMaster : MonoBehaviour, IUsable {
 	public List<Text> texts;
 	public List<float> intervals;
+	float alltime;
+
+	public float StartedTalking;
+
 
 	public void Use(){
-		StartCoroutine (ShowText ());
+		if (Time.time - StartedTalking > alltime) {
+			StartedTalking = Time.time;
+			StartCoroutine (ShowText ());
+		}
+
 	}
 
 	IEnumerator ShowText(){
@@ -22,7 +30,10 @@ public class TextMaster : MonoBehaviour, IUsable {
 	}
 
 	void Start () {
-	
+		alltime = 0;
+		for (int i = 0; i < intervals.Count; i++) {
+			alltime += intervals [i];
+		}
 	}
 	
 	// Update is called once per frame

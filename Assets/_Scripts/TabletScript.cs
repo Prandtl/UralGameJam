@@ -4,7 +4,7 @@ using AssemblyCSharp;
 
 public class TabletScript : MonoBehaviour, IMedalReciever {
 
-	int currentAmount;
+	public int currentAmount;
 	int maxAmount = 7;
 
 	public void AddMedal()

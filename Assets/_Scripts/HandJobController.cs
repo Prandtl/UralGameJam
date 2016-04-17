@@ -16,7 +16,6 @@ public class HandJobController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		ControlHand ();
-		Debug.Log (hand.localEulerAngles);
 	}
 
 	void ControlHand() {

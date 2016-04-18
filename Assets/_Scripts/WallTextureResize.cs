@@ -41,17 +41,17 @@ public class WallTextureResize : MonoBehaviour {
 	{
 		Mesh mesh;
 
-		#if UNITY_EDITOR
+	//	#if UNITY_EDITOR
 
 		var meshFilter = GetComponent<MeshFilter>();
 			var meshCopy = Instantiate(meshFilter.sharedMesh);
 		mesh = meshFilter.mesh = meshCopy;
 
-		#else
+	//	#else
 
-		mesh = GetComponent<MeshFilter>().mesh
+	//	mesh = GetComponent<MeshFilter>().mesh
 
-		#endif
+	//	#endif
 
 		return mesh;
 	}

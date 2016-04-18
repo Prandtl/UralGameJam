@@ -7,6 +7,10 @@ public class Judge : MonoBehaviour, IUsable {
 	public TextMaster YouWon;
 	public GameObject wall;
 
+	void Start() {
+		wall = GameObject.Find ("JudgeWall");
+	}
+
 	public void Use(){
 		var tablet = FindObjectOfType<TabletScript> ();
 		if (tablet.currentAmount < 7) {
